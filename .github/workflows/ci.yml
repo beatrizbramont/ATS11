@@ -32,3 +32,12 @@ jobs:
 
       - name: Rodar Testes
         run: pytest
+      
+      - name: Subir a API e testar requisição
+        run: |
+          pip install fastapi uvicorn
+          fastapi run main.py --port 8000 &
+          sleep 3
+          curl -f http://localhost:8000/
+          curl -f http://localhost:8000/somar/10/20
+
